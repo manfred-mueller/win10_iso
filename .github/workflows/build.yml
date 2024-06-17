@@ -32,3 +32,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build Iso
         run: sh uup_download_linux.sh
+
+      # Runs a set of commands using the runners shell
+      - name: Find Iso
+        run: find . -name "*.iso" -type f
+        
