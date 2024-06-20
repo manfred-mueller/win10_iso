@@ -39,7 +39,10 @@ jobs:
         run: sh uup_download_linux.sh
       
       - name: Find Iso
-        run: find ${{ github.workspace }} -name "*.ISO" -type f
+        run: |
+             isoPath=$(find ${{ github.workspace }} -name "*.ISO" -type f)
+             export ISO_PATH=$isoPath
+             echo "ISO_PATH=$isoPath" >> $GITHUB_ENV
         id: find_iso
         
       - name: Create Release
@@ -59,6 +62,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./*.ISO
+          asset_path: ${{ env.ISO_PATH }}
           asset_name: win10.iso
           asset_content_type: application/zip
