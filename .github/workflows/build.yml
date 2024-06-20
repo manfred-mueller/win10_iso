@@ -32,7 +32,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build Iso
         run: sh uup_download_linux.sh
-
+      
+      - name: Extend convert.sh
+        run: sed -i 's/Done/Done - PWD: \$(pwd) - ISO: \$isoName/' files/convert.sh
+        id: extend_convert
+        
       - name: Find Iso
         run: find $HOME -name "*.iso" -type f
         id: find_iso
