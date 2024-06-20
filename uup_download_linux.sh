@@ -68,9 +68,10 @@ if [ $? != 0 ]; then
   exit 1
 fi
 
-echo ""
+echo "$destDir"
 if [ -e ./files/convert.sh ]; then
   sed -i 's/ -b / -v -b /' ./files/convert.sh
+  sed -i 's/Done/Done - PWD=\$(pwd) - ISO=\$isoName/' ./files/convert.sh
   chmod +x ./files/convert.sh
   ./files/convert.sh wim "$destDir" 1
 fi
