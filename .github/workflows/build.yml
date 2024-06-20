@@ -34,7 +34,10 @@ jobs:
         run: sh uup_download_linux.sh
       
       - name: Extend convert.sh
-        run: sed -i 's/Done/Done - PWD: \$(pwd) - ISO: \$isoName/' files/convert.sh
+        with: |
+              PWD=$(pwd)
+              ISO
+        run: sed -i "s/Done/Done - PWD=\$(pwd) - ISO=\$isoName/" files/convert.sh
         id: extend_convert
         
       - name: Find Iso
