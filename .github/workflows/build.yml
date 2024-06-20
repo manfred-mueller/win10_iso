@@ -33,6 +33,10 @@ jobs:
       - name: Build Iso
         run: sh uup_download_linux.sh
 
+      - name: Find Iso
+        run: find $HOME -name "*.iso" -type f
+        id: find_iso
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
