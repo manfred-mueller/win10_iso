@@ -70,6 +70,7 @@ fi
 
 echo ""
 if [ -e ./files/convert.sh ]; then
+  sed -i 's/ -b / -v -b /' ./files/convert.sh
   chmod +x ./files/convert.sh
   ./files/convert.sh wim "$destDir" 1
 fi
